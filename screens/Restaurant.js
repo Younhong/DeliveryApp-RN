@@ -28,8 +28,7 @@ const Restaurant = ({route, navigation}) => {
 
         if (action == "+") {
             if (item.length > 0) {
-                let newQty = item[0].qty + 1;
-                item[0].qty = newQty;
+                item[0].qty = item[0].qty + 1;
                 item[0].total = item[0].qty * price
             } else {
                 const newItem = {
@@ -44,8 +43,7 @@ const Restaurant = ({route, navigation}) => {
         } else {
             if (item.length > 0) {
                 if (item[0]?.qty > 0) {
-                    let newQty = item[0].qty - 1;
-                    item[0].qty = newQty;
+                    item[0].qty = item[0].qty - 1
                     item[0].total = item[0].qty * price
                 }
             }
@@ -397,13 +395,19 @@ const Restaurant = ({route, navigation}) => {
                         alignItems: 'center',
                         justifyContent: 'center'
                     }}>
-                        <TouchableOpacity style={{
-                            width: SIZES.width * 0.9,
-                            padding: SIZES.padding,
-                            backgroundColor: COLORS.primary,
-                            alignItems: 'center',
-                            borderRadius: SIZES.radius
-                        }}>
+                        <TouchableOpacity 
+                            style={{
+                                width: SIZES.width * 0.9,
+                                padding: SIZES.padding,
+                                backgroundColor: COLORS.primary,
+                                alignItems: 'center',
+                                borderRadius: SIZES.radius
+                            }}
+                            onPress={() => navigation.navigate("OrderDelivery", {
+                                restaurant: restaurant,
+                                currentLocation: currentLocation
+                            })}
+                        >
                             <Text style={{
                                 color: COLORS.white,
                                 ...FONTS.h2
